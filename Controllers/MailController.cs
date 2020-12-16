@@ -43,6 +43,8 @@ namespace mailservice.Controllers
             public string Subject { get; set; }
             [JsonPropertyName("body")]
             public string Body { get; set; }
+            [JsonPropertyName("bodyType")]
+            public string BodyType { get; set; } = "plain";
         }
 
         [HttpPost]
@@ -63,7 +65,7 @@ namespace mailservice.Controllers
                     msg.From.Add(new MailboxAddress(item.FromName ?? conf.FromName, conf.From));
                     msg.To.Add(new MailboxAddress(item.ToName, item.To));
                     msg.Subject = item.Subject;
-                    msg.Body = new TextPart(item.Body);
+                    msg.Body = new TextPart(item.BodyType) { Text = item.Body };
                     await client.SendAsync(msg);
                 }
                 await client.DisconnectAsync(true);
