@@ -4,7 +4,7 @@ A simple self-hosted email sending HTTP API service using SMTP.
 
 ## Why?
 
-- Somehow some internet providers blocked outgoing SMTP connection.
+- Somehow the SMTP connections are blocked by ISP or the SMTP server, but a third server works.
 - Centerized email sending configuration.
 
 ## Configuration
