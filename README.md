@@ -2,6 +2,11 @@
 
 A simple self-hosted email sending HTTP API service using SMTP.
 
+## Why?
+
+- Somehow some internet providers blocked outgoing SMTP connection.
+- Centerized email sending configuration.
+
 ## Configuration
 
 Edit `appsettings.json`, add STMP account configurations:
@@ -54,11 +59,15 @@ POST `/api/mail` with JSON body:
 
 ```ts
 interface Mail {
-    fromName: string;
-    to: string;
-    toName: string;
-    subject: string;
-    body: string;
-    bodyType: "text" | "html" | string;
+  fromName: string;
+  to: string;
+  toName: string;
+  subject: string;
+  body: string;
+  bodyType:
+    | "text" // "text/plain"
+    | "html" // "text/html"
+    | string // any MIME type
+    ;
 }
 ```
